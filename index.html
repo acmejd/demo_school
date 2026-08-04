@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oakridge International Academy | Modern Education & STEM Excellence</title>
+    <meta name="description" content="A modern, holistic school focused on STEM learning, sports excellence, and creative development.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Alpine.js for Interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            900: '#064e3b',
+                            800: '#065f46',
+                            600: '#059669',
+                            500: '#10b981',
+                            50: '#ecfdf5',
+                        },
+                        coral: {
+                            500: '#ff6b6b',
+                            600: '#ee5253',
+                            50: '#fff0f0'
+                        },
+                        sand: '#fdfbf7',
+                        charcoal: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sand text-charcoal font-sans antialiased pb-20 md:pb-0" x-data="{ mobileMenu: false, openFaq: null, galleryFilter: 'all', admissionTab: 1 }">
+
+    <!-- TOP NOTICE TICKER -->
+    <div class="bg-emerald-900 text-emerald-50 text-xs py-2 px-4 border-b border-emerald-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <span class="bg-coral-500 text-white font-bold text-[10px] px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">Announcement</span>
+                <span class="truncate text-slate-200">Admissions for 2026-27 are now open! Limited seats available for Kindergarten & Class XI STEM batches.</span>
+            </div>
+            <div class="hidden lg:flex items-center space-x-6 shrink-0">
+                <a href="tel:+9198765XXXXX" class="hover:text-white transition"><i class="fa-solid fa-phone text-coral-500 mr-1.5"></i> +91 98765 XXXXX</a>
+                <a href="#contact" class="hover:text-white transition"><i class="fa-solid fa-location-dot text-coral-500 mr-1.5"></i> Visit Campus</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-40 bg-sand/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3">
+                    <div class="w-11 h-11 bg-emerald-600 text-white rounded-2xl flex items-center justify-center font-black text-xl shadow-lg shadow-emerald-600/30">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-emerald-900 block leading-none">OAKRIDGE</span>
+                        <span class="text-[10px] font-bold text-coral-500 uppercase tracking-widest block mt-1">International Academy</span>
+                    </div>
+                </a>
+
+                <!-- Links -->
+                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <a href="#home" class="hover:text-emerald-600 transition">Home</a>
+                    <a href="#pillars" class="hover:text-emerald-600 transition">Pillars</a>
+                    <a href="#gallery" class="hover:text-emerald-600 transition">Gallery</a>
+                    <a href="#admission" class="hover:text-emerald-600 transition">Admissions</a>
+                    <a href="#faqs" class="hover:text-emerald-600 transition">FAQs</a>
+                    <a href="#contact" class="hover:text-emerald-600 transition">Contact</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <a href="#admission" class="bg-emerald-600 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider transition shadow-md shadow-emerald-600/20 inline-flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap"></i> Apply Online
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Btn -->
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden text-slate-700 hover:text-emerald-600 p-2">
+          <i class="fa-solid" :class="mobileMenu ? 'fa-xmark text-2xl' : 'fa-bars-staggered text-2xl'"></i>
+        </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div x-show="mobileMenu" x-transition class="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4">
+            <a href="#home" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">Home</a>
+            <a href="#pillars" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">Pillars</a>
+            <a href="#gallery" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">Gallery</a>
+            <a href="#admission" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">Admissions</a>
+            <a href="#faqs" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">FAQs</a>
+            <a href="#contact" @click="mobileMenu = false" class="block text-slate-700 hover:text-emerald-600 font-bold">Contact</a>
+            <a href="#admission" @click="mobileMenu = false" class="block text-center bg-coral-500 text-white font-bold py-3 rounded-xl uppercase text-xs tracking-wider">
+        Apply Online
+      </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative py-12 md:py-20 overflow-hidden" id="home">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Left Column (Pitch) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> A New Standard for Modern Schooling
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+                        Where curiosity becomes <span class="text-emerald-600 underline decoration-coral-500 decoration-wavy decoration-2">capability.</span>
+                    </h1>
+
+                    <p class="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl">
+                        We move beyond rote learning. Oakridge combines world-class STEM robotics labs, sports training, and creative arts with inquiry-based learning.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#admission" class="bg-coral-500 hover:bg-coral-600 text-white text-xs font-bold px-8 py-4 rounded-full uppercase tracking-wider transition shadow-lg shadow-coral-500/25 flex items-center gap-2">
+                            <i class="fa-solid fa-file-signature"></i> Start Admission
+                        </a>
+                        <a href="#contact" class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold px-8 py-4 rounded-full uppercase tracking-wider transition flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-emerald-600"></i> Visit Campus
+                        </a>
+                    </div>
+
+                    <!-- Feature Highlights Badge Row -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200/80">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">Robotics Lab</p>
+                                <p class="text-xs text-slate-500">Class I onwards</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-coral-50 text-coral-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">Health First</p>
+                                <p class="text-xs text-slate-500">In-house doctor</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-bus"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900">GPS Transport</p>
+                                <p class="text-xs text-slate-500">Live app tracking</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Quick Tour Form) -->
+                <div class="lg:col-span-5 relative" id="quick-tour">
+                    <div class="absolute -top-6 -left-6 bg-coral-500 text-white text-xs font-bold py-2 px-4 rounded-2xl shadow-lg z-10 hidden sm:flex items-center gap-2 rotate-[-4deg]">
+                        <i class="fa-solid fa-star"></i> 100% CBSE Pass Rate
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50">
+                        <h3 class="text-2xl font-extrabold text-slate-900">Book a Campus Tour</h3>
+                        <p class="text-xs text-slate-500 mt-1 mb-6">Fill out the form below to receive a call from our admissions desk within 2 hours.</p>
+
+                        <form onsubmit="handleInquiry(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Your Full Name</label>
+                                <input type="text" id="parentName" placeholder="e.g. Ananya Roy" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp Number</label>
+                                <input type="tel" id="parentPhone" placeholder="10-digit phone number" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Child's Grade</label>
+                                    <select id="childGrade" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                    <option>Playgroup / KG</option>
+                    <option>Grade 1 - 5</option>
+                    <option>Grade 6 - 8</option>
+                    <option>Grade 9 - 10</option>
+                    <option>Grade 11 - 12</option>
+                  </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Preferred Time</label>
+                                    <select id="tourTime" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                    <option>Morning (9 - 12)</option>
+                    <option>Afternoon (12 - 3)</option>
+                  </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-800 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i> Send Instant Inquiry
+              </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- THREE PILLARS SECTION -->
+    <section id="pillars" class="py-20 bg-white border-y border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-coral-500">Core Foundations</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Built on Three Educational Pillars</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-sand p-8 rounded-3xl border border-slate-200/80 space-y-4 hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Inquiry & STEM</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Students learn by doing. Our hands-on science experiments, coding modules, and robotics competitions build critical problem-solving skills early.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-sand p-8 rounded-3xl border border-slate-200/80 space-y-4 hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-coral-50 text-coral-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Creative & Performing Arts</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Music, theater, classical dance, and visual arts are integrated directly into the daily timetable to foster confidence and self-expression.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-sand p-8 rounded-3xl border border-slate-200/80 space-y-4 hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Athletic Development</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Professional coaches lead our swimming, lawn tennis, basketball, and martial arts academies to instill discipline and teamwork.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Life At Oakridge</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Campus & Activity Gallery</h2>
+                <p class="text-slate-600 text-sm mt-3">Explore our state-of-the-art infrastructure, vibrant events, and active learning spaces.</p>
+            </div>
+
+            <!-- Gallery Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button @click="galleryFilter = 'all'" :class="galleryFilter === 'all' ? 'bg-emerald-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          All Moments
+        </button>
+                <button @click="galleryFilter = 'labs'" :class="galleryFilter === 'labs' ? 'bg-emerald-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          Campus & Labs
+        </button>
+                <button @click="galleryFilter = 'sports'" :class="galleryFilter === 'sports' ? 'bg-emerald-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          Sports & Fitness
+        </button>
+                <button @click="galleryFilter = 'arts'" :class="galleryFilter === 'arts' ? 'bg-emerald-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          Arts & Events
+        </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 1 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'labs'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-emerald-900 relative overflow-hidden flex items-center justify-center text-emerald-200">
+                        <!-- Image Placeholder Graphic -->
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-robot text-5xl mb-3 text-emerald-400"></i>
+                            <p class="font-extrabold text-white text-lg">Robotics & AI Lab</p>
+                            <p class="text-xs text-emerald-200 mt-1">High-tech automation & kit building</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-emerald-600/90 px-3 py-1 rounded-full">STEM Facility</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Robotics & AI Innovation Hub</h4>
+                        <p class="text-xs text-slate-500 mt-1">Hands-on coding for junior and senior school students.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'sports'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-slate-800 relative overflow-hidden flex items-center justify-center text-slate-200">
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-person-swimming text-5xl mb-3 text-coral-500"></i>
+                            <p class="font-extrabold text-white text-lg">Olympic-Size Pool</p>
+                            <p class="text-xs text-slate-300 mt-1">Temperature-controlled aquatic facility</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-coral-500/90 px-3 py-1 rounded-full">Sports Complex</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Aquatics Training Center</h4>
+                        <p class="text-xs text-slate-500 mt-1">Certified swimming instructors for all age groups.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'arts'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-amber-900 relative overflow-hidden flex items-center justify-center text-amber-100">
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-masks-theater text-5xl mb-3 text-amber-400"></i>
+                            <p class="font-extrabold text-white text-lg">Grand Auditorium</p>
+                            <p class="text-xs text-amber-200 mt-1">600-seater theater & acoustics stage</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-amber-600/90 px-3 py-1 rounded-full">Arts & Culture</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Annual Cultural Festival Stage</h4>
+                        <p class="text-xs text-slate-500 mt-1">Building stage confidence through theater & music.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'labs'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-teal-900 relative overflow-hidden flex items-center justify-center text-teal-100">
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-book-open text-5xl mb-3 text-teal-300"></i>
+                            <p class="font-extrabold text-white text-lg">Central Knowledge Hub</p>
+                            <p class="text-xs text-teal-200 mt-1">15,000+ print volumes & digital reading pods</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-teal-600/90 px-3 py-1 rounded-full">Library</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Quiet Study & Research Lounge</h4>
+                        <p class="text-xs text-slate-500 mt-1">Dedicated quiet zones for deep work and self-study.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'sports'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-emerald-800 relative overflow-hidden flex items-center justify-center text-emerald-100">
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-futbol text-5xl mb-3 text-emerald-300"></i>
+                            <p class="font-extrabold text-white text-lg">Turf Football Ground</p>
+                            <p class="text-xs text-emerald-200 mt-1">All-weather synthetic turf & floodlights</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-emerald-600/90 px-3 py-1 rounded-full">Outdoor Sports</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Junior Football Academy Ground</h4>
+                        <p class="text-xs text-slate-500 mt-1">Professional training drills after school hours.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div x-show="galleryFilter === 'all' || galleryFilter === 'arts'" x-transition class="group relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 shadow-sm">
+                    <div class="h-60 bg-rose-900 relative overflow-hidden flex items-center justify-center text-rose-100">
+                        <div class="text-center p-6">
+                            <i class="fa-solid fa-paintbrush text-5xl mb-3 text-coral-400"></i>
+                            <p class="font-extrabold text-white text-lg">Design & Pottery Studio</p>
+                            <p class="text-xs text-rose-200 mt-1">Sculpting, canvas painting & craft</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                            <span class="text-white text-xs font-bold bg-coral-500/90 px-3 py-1 rounded-full">Fine Arts</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-extrabold text-slate-900">Visual Fine Arts Workshop</h4>
+                        <p class="text-xs text-slate-500 mt-1">Nurturing creative expression and pottery skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMISSION FORM SECTION -->
+    <section id="admission" class="py-20 bg-white border-y border-slate-200/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Online Application</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Student Admission Form</h2>
+                <p class="text-slate-600 text-sm mt-3">Complete this form to initiate the formal admission procedure for Academic Session 2026-27.</p>
+            </div>
+
+            <div class="bg-sand rounded-3xl border border-slate-200/80 shadow-xl p-6 sm:p-10">
+                <!-- Form Navigation Tabs -->
+                <div class="flex border-b border-slate-200 mb-8 pb-4 text-xs font-bold uppercase tracking-wider gap-4 sm:gap-8 overflow-x-auto">
+                    <button @click="admissionTab = 1" :class="admissionTab === 1 ? 'text-emerald-700 border-b-2 border-emerald-600 pb-2' : 'text-slate-400 hover:text-slate-600'">
+            1. Student Information
+          </button>
+                    <button @click="admissionTab = 2" :class="admissionTab === 2 ? 'text-emerald-700 border-b-2 border-emerald-600 pb-2' : 'text-slate-400 hover:text-slate-600'">
+            2. Parent / Guardian Details
+          </button>
+                    <button @click="admissionTab = 3" :class="admissionTab === 3 ? 'text-emerald-700 border-b-2 border-emerald-600 pb-2' : 'text-slate-400 hover:text-slate-600'">
+            3. Academic History & Preferences
+          </button>
+                </div>
+
+                <form onsubmit="handleFullAdmission(event)">
+                    <!-- TAB 1: STUDENT DETAILS -->
+                    <div x-show="admissionTab === 1" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Student First Name *</label>
+                                <input type="text" required placeholder="e.g. Aarav" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Student Last Name *</label>
+                                <input type="text" required placeholder="e.g. Sharma" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Date of Birth *</label>
+                                <input type="date" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Gender *</label>
+                                <select required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                  <option value="">Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Applying for Class *</label>
+                                <select required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                  <option value="">Select Grade</option>
+                  <option>Playgroup / Nursery</option>
+                  <option>Kindergarten (KG 1 - KG 2)</option>
+                  <option>Primary (Class 1 - 5)</option>
+                  <option>Middle (Class 6 - 8)</option>
+                  <option>Secondary (Class 9 - 10)</option>
+                  <option>Senior Secondary (Class 11 - 12)</option>
+                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end pt-4">
+                            <button type="button" @click="admissionTab = 2" class="bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider hover:bg-emerald-700 transition flex items-center gap-2">
+                Next: Parent Details <i class="fa-solid fa-arrow-right"></i>
+              </button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PARENT DETAILS -->
+                    <div x-show="admissionTab === 2" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Father's / Guardian's Name *</label>
+                                <input type="text" required placeholder="Full Name" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Mother's Name *</label>
+                                <input type="text" required placeholder="Full Name" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Address *</label>
+                                <input type="email" required placeholder="parent@domain.com" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Mobile Phone Number *</label>
+                                <input type="tel" required placeholder="10-digit number" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Residential Address *</label>
+                            <textarea rows="2" required placeholder="House No., Street Name, City, Pincode" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600"></textarea>
+                        </div>
+
+                        <div class="flex justify-between pt-4">
+                            <button type="button" @click="admissionTab = 1" class="bg-slate-200 text-slate-700 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider hover:bg-slate-300 transition">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+                            <button type="button" @click="admissionTab = 3" class="bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider hover:bg-emerald-700 transition flex items-center gap-2">
+                Next: Academic Details <i class="fa-solid fa-arrow-right"></i>
+              </button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: ACADEMIC DETAILS & SUBMIT -->
+                    <div x-show="admissionTab === 3" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Previous School Attended (If Any)</label>
+                                <input type="text" placeholder="Name of previous school & city" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">School Transport Needed?</label>
+                                <select class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                  <option>Yes, need GPS school bus</option>
+                  <option>No, self transport</option>
+                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Additional Remarks / Special Student Needs</label>
+                            <textarea rows="3" placeholder="Mention any medical requirements, sports interests, or academic goals..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="terms" required class="w-4 h-4 text-emerald-600 rounded">
+                            <label for="terms" class="text-xs text-slate-600">I declare that the information provided above is accurate and true to my knowledge.</label>
+                        </div>
+
+                        <div class="flex justify-between pt-4 border-t border-slate-200">
+                            <button type="button" @click="admissionTab = 2" class="bg-slate-200 text-slate-700 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider hover:bg-slate-300 transition">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+                            <button type="submit" class="bg-coral-500 hover:bg-coral-600 text-white font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-coral-500/20 flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i> Submit Formal Application
+              </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION SECTION -->
+    <section id="faqs" class="py-20 bg-sand">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Parent Queries</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden">
+                    <button @click="openFaq === 1 ? openFaq = null : openFaq = 1" class="w-full px-6 py-5 text-left font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>What is the school admission process?</span>
+            <i class="fa-solid text-slate-400 transition" :class="openFaq === 1 ? 'fa-minus' : 'fa-plus'"></i>
+          </button>
+                    <div x-show="openFaq === 1" x-transition class="px-6 pb-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3">
+                        The process includes filling out an inquiry form, scheduling an informal interaction with the child and parents, and completing document verification alongside registration fees.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden">
+                    <button @click="openFaq === 2 ? openFaq = null : openFaq = 2" class="w-full px-6 py-5 text-left font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>Are transport routes available across the city?</span>
+            <i class="fa-solid text-slate-400 transition" :class="openFaq === 2 ? 'fa-minus' : 'fa-plus'"></i>
+          </button>
+                    <div x-show="openFaq === 2" x-transition class="px-6 pb-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3">
+                        Yes, our fleet of air-conditioned buses equipped with GPS tracking and female attendants covers all major residential areas within a 25 km radius.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden">
+                    <button @click="openFaq === 3 ? openFaq = null : openFaq = 3" class="w-full px-6 py-5 text-left font-bold text-slate-900 flex justify-between items-center text-sm sm:text-base">
+            <span>What is the average teacher-to-student ratio?</span>
+            <i class="fa-solid text-slate-400 transition" :class="openFaq === 3 ? 'fa-minus' : 'fa-plus'"></i>
+          </button>
+                    <div x-show="openFaq === 3" x-transition class="px-6 pb-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3">
+                        We maintain a strict ratio of 1:15 in Kindergarten and 1:25 in Primary and Secondary grades to ensure individual attention for every child.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM & LOCATION SECTION -->
+    <section id="contact" class="py-20 bg-white border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+
+                <!-- Contact Information & Map -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-coral-500">Reach Us</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Get in Touch with Admissions Desk</h2>
+                        <p class="text-slate-600 text-sm mt-2">Have a question regarding fees, syllabus, or bus routes? Our counseling team is available Monday to Saturday.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sand border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-500 uppercase">Campus Location</p>
+                                <p class="text-sm font-bold text-slate-900 mt-0.5">VIP Road, Near Knowledge Park, Raipur (C.G.) - 492001</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sand border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-coral-50 text-coral-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-500 uppercase">Direct Phone Lines</p>
+                                <p class="text-sm font-bold text-slate-900 mt-0.5">+91 98765 XXXXX / +91 771 2345678</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sand border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-500 uppercase">Visiting Hours</p>
+                                <p class="text-sm font-bold text-slate-900 mt-0.5">Mon - Sat: 8:30 AM to 3:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Embedded Map Frame Placeholder -->
+                    <div class="rounded-3xl border border-slate-200 overflow-hidden bg-slate-100 h-48 flex items-center justify-center text-center p-6 text-slate-500">
+                        <div>
+                            <i class="fa-solid fa-map-location-dot text-3xl text-emerald-600 mb-2"></i>
+                            <p class="text-xs font-bold text-slate-800">Oakridge International Campus Location Map</p>
+                            <p class="text-[11px] text-slate-500">Easily accessible via VIP Airport Road Corridor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-sand p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-sm">
+                    <h3 class="text-2xl font-extrabold text-slate-900">Send an General Inquiry</h3>
+                    <p class="text-xs text-slate-500 mt-1 mb-6">Drop us a message below and our front desk will get back to you shortly.</p>
+
+                    <form onsubmit="handleGeneralContact(event)" class="space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Full Name *</label>
+                                <input type="text" required placeholder="e.g. Rajesh Verma" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Address *</label>
+                                <input type="email" required placeholder="name@example.com" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone Number *</label>
+                                <input type="tel" required placeholder="10-digit number" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Inquiry Type</label>
+                                <select class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600">
+                  <option>General Information</option>
+                  <option>Fee Structure & Scholarships</option>
+                  <option>Bus Transport Details</option>
+                  <option>Careers / Teacher Job</option>
+                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Message Details *</label>
+                            <textarea rows="4" required placeholder="Write your query here..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-600"></textarea>
+                        </div>
+
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-800 text-white font-bold py-4 px-8 rounded-xl text-xs uppercase tracking-widest transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <span class="text-white font-extrabold text-base block mb-2">Oakridge Academy</span>
+                <p class="leading-relaxed">VIP Road Campus, Near Knowledge Park, Raipur (C.G.)</p>
+                <p class="mt-2"><i class="fa-solid fa-phone text-emerald-500 mr-2"></i> +91 98765 XXXXX</p>
+            </div>
+            <div>
+                <span class="text-white font-bold text-sm block mb-2">Visiting Hours</span>
+                <p>Monday - Saturday: 8:30 AM to 3:30 PM</p>
+                <p class="mt-1 text-slate-500">Sunday: Closed (Prior appointment required)</p>
+            </div>
+            <div>
+                <span class="text-white font-bold text-sm block mb-2">Affiliation</span>
+                <p>CBSE Affiliated Senior Secondary School (Code: 3330182)</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 text-center pt-8 border-t border-slate-800 text-slate-600">
+            © 2026 Oakridge International Academy. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        function handleInquiry(e) {
+            e.preventDefault();
+            const parent = document.getElementById('parentName').value;
+            const phone = document.getElementById('parentPhone').value;
+            const grade = document.getElementById('childGrade').value;
+            const time = document.getElementById('tourTime').value;
+
+            const schoolNumber = "9198765XXXXX";
+            const msg = `Hi Oakridge Admissions Team!%0A` +
+                `*Parent Name:* ${encodeURIComponent(parent)}%0A` +
+                `*Phone:* ${encodeURIComponent(phone)}%0A` +
+                `*Grade:* ${encodeURIComponent(grade)}%0A` +
+                `*Preferred Visit Time:* ${encodeURIComponent(time)}`;
+
+            window.open(`https://wa.me/${schoolNumber}?text=${msg}`, '_blank');
+        }
+
+        function handleFullAdmission(e) {
+            e.preventDefault();
+            alert("Thank you! Your formal admission form has been received. Our team will contact you within 24 hours for document verification.");
+        }
+
+        function handleGeneralContact(e) {
+            e.preventDefault();
+            alert("Thank you for reaching out! Your message has been sent to the front office desk.");
+        }
+    </script>
+</body>
+
+</html>
